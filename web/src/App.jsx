@@ -13,9 +13,9 @@ import EditEvent from './pages/EditEvent';
 const originalConsoleInfo = console.info;
 console.info = (...args) => {
   if (args[0]?.includes("tracking/RPC")) {
-    return; // Suppress the specific log
+    return; 
   }
-  originalConsoleInfo(...args); // Allow other logs
+  originalConsoleInfo(...args);
 };
 
 function App() {
@@ -57,10 +57,7 @@ function App() {
         },
       ],
     },
-    // {
-    //   path: "*",
-    //   element: <NotFound />,
-    // },
+    
   ]);
 
   return (

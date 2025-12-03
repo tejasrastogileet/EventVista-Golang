@@ -11,7 +11,7 @@ function EventsListing({events}) {
     <div className='container'>
         {events?.length > 0 ? <div className='event__card'>
           {events?.map((event) => {
-            // If the event's datetime is before the start of today (local), display 03-12-2025
+          
             const now = new Date()
             const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
             let displayDate = formatDateTime(event.datetime)
@@ -21,7 +21,7 @@ function EventsListing({events}) {
                 displayDate = '03-12-2025'
               }
             } catch (e) {
-              // if parsing fails, fall back to formatter
+          
             }
 
             return (

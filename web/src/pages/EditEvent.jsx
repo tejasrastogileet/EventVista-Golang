@@ -24,7 +24,7 @@ function EditEvent() {
             setName(data?.data.name)
             setDescription(data?.data.description)
             setLocation(data?.data.location)
-            // populate datetime-local input from stored ISO datetime
+
             try {
                 const iso = data?.data.datetime || data?.data.dateTime || ''
                 if (iso) {
@@ -39,7 +39,7 @@ function EditEvent() {
                     }
                 }
             } catch (e) {
-                // ignore parse errors
+               
             }
         } catch (error) {
             toast.error("Could not fetch event details")
@@ -83,7 +83,6 @@ function EditEvent() {
         if (!name || !description || !location) {
             return;
         }
-        // Prepare datetime: if user provided a datetime-local, convert to ISO; else use current time
         let isoDatetime = new Date().toISOString()
         if (datetimeLocal) {
             const parsed = new Date(datetimeLocal)

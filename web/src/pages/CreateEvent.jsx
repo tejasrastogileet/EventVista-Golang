@@ -45,10 +45,10 @@ function CreateEvent() {
         if (!name || !description || !location) {
             return;
         }
-        // If user provided a datetime via the form (local datetime-local input), convert to ISO.
+
         let isoDatetime = new Date().toISOString()
         if (datetimeLocal) {
-            // datetime-local input has format 'YYYY-MM-DDTHH:MM' (no timezone).
+            
             const parsed = new Date(datetimeLocal)
             if (!isNaN(parsed)) {
                 isoDatetime = parsed.toISOString()

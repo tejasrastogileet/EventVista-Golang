@@ -1,8 +1,10 @@
-# 📅 Event Booking App - API Overview (FullStack App)
 
-## 🧾 Introduction
 
-The **Event Booking App** is a web-based platform that allows users to **create**, **manage**, and **register** for events.  
+                           EventVista- A Event Management Full stack Website   with                                                          backend in Go-lang
+
+##  Introduction
+
+The **EventVita** a web-based platform that allows users to **create**, **manage**, and **register** for events.  
 It provides a seamless experience for both event organizers and participants, enabling efficient event management and user engagement.
 
 ---
@@ -88,9 +90,7 @@ These endpoints handle **event creation**, **modification**, and **retrieval**.
 - **CORS Middleware** – Handles cross-origin resource sharing
 - **Custom Repository Layer** – Abstracts storage operations (`repo.Storage`)
 
----
-
-## 🚀 Server Configuration
+-
 
 ```go
 srv := &http.Server{
