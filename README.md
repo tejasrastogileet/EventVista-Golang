@@ -1,6 +1,6 @@
 
 
-                           EventVista- A Event Management Full stack Website   with                                                          backend in Go-lang
+                           EventVista- A Event Management Full stack Website with backend in Go-lang
 
 ##  Introduction
 
