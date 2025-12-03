@@ -8,6 +8,7 @@ function CreateEvent() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
+    const [datetimeLocal, setDatetimeLocal] = useState("")
 
     const navigate = useNavigate()
 
@@ -44,16 +45,27 @@ function CreateEvent() {
         if (!name || !description || !location) {
             return;
         }
+        // If user provided a datetime via the form (local datetime-local input), convert to ISO.
+        let isoDatetime = new Date().toISOString()
+        if (datetimeLocal) {
+            // datetime-local input has format 'YYYY-MM-DDTHH:MM' (no timezone).
+            const parsed = new Date(datetimeLocal)
+            if (!isNaN(parsed)) {
+                isoDatetime = parsed.toISOString()
+            }
+        }
+
         const newEvent = {
             name: name,
             description: description,
             location: location,
-            dateTime: new Date().toISOString(),
+            datetime: isoDatetime,
         }
         createEvent(newEvent)
         setName("")
         setDescription("")
         setLocation("")
+        setDatetimeLocal("")
         navigate("/dashboard");
     }
 
@@ -73,6 +85,11 @@ function CreateEvent() {
                 <div className="">
                     <label htmlFor="location">Location</label>
                     <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" />
+                </div>
+                <div className="">
+                    <label htmlFor="datetime">Date & time</label>
+                    <input type="datetime-local" id="datetime" value={datetimeLocal} onChange={(e) => setDatetimeLocal(e.target.value)} />
+                    <small className="muted">Leave empty to use current time</small>
                 </div>
                 <input type='submit' value="Create Event" />
 

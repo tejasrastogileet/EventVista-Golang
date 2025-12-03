@@ -11,7 +11,7 @@ function Navbar() {
 
     return (
         <div className='nav container'>
-            <Link to="/">Eventos</Link>
+            <Link to="/">EventVista</Link>
             <div>
                 {!isAuthenticated && <Link to="/signup">Sign in</Link>}
                 {isAuthenticated &&

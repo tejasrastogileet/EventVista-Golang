@@ -21,7 +21,7 @@ function Home() {
   return (
     <div className="wrapper">
       <div className='hero'>
-        <h1>Eventos Management App</h1>
+        <h1>EventVista</h1>
         <Link to="/signup">
           Get Started
         </Link>

@@ -94,7 +94,7 @@ function SingleEvent() {
 
     return (
         <div className="container">
-            <h1>Event Details</h1>
+            <h1>EventVista — Event Details</h1>
             <EventList event={event} />
             <div className="event__btn">
                 <button onClick={() => registerForEvent(id)}>Register for Event</button>

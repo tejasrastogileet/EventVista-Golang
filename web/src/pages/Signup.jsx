@@ -95,7 +95,7 @@ function Signup() {
         <div className='wrapper'>
             <div className='signup register__container'>
                 {step === 0 && <form onSubmit={handleSignup}>
-                    <h1 className='title'>Account Sign up</h1>
+                    <h1 className='title'>EventVista — Account Sign up</h1>
                     <div>
                         <label htmlFor="email">Email</label>
                         <input name='email' required value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
@@ -108,7 +108,7 @@ function Signup() {
                 </form>}
 
                 {step === 1 && <div>
-                    <h1 className='title'>Account Login</h1>
+                    <h1 className='title'>EventVista — Account Login</h1>
                     <form onSubmit={handleLogin}>
                         <div>
                             <label htmlFor="email">Email</label>

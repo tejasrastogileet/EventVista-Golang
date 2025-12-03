@@ -7,7 +7,7 @@ function EditEvent() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
-    // const [dateTime, setDateTime] = useState("")
+    const [datetimeLocal, setDatetimeLocal] = useState("")
 
     const navigate = useNavigate()
 
@@ -24,7 +24,23 @@ function EditEvent() {
             setName(data?.data.name)
             setDescription(data?.data.description)
             setLocation(data?.data.location)
-            // setDateTime(data?.data.dateTime); 
+            // populate datetime-local input from stored ISO datetime
+            try {
+                const iso = data?.data.datetime || data?.data.dateTime || ''
+                if (iso) {
+                    const d = new Date(iso)
+                    if (!isNaN(d)) {
+                        const yyyy = d.getFullYear()
+                        const mm = String(d.getMonth() + 1).padStart(2, '0')
+                        const dd = String(d.getDate()).padStart(2, '0')
+                        const hh = String(d.getHours()).padStart(2, '0')
+                        const min = String(d.getMinutes()).padStart(2, '0')
+                        setDatetimeLocal(`${yyyy}-${mm}-${dd}T${hh}:${min}`)
+                    }
+                }
+            } catch (e) {
+                // ignore parse errors
+            }
         } catch (error) {
             toast.error("Could not fetch event details")
         }
@@ -67,11 +83,20 @@ function EditEvent() {
         if (!name || !description || !location) {
             return;
         }
+        // Prepare datetime: if user provided a datetime-local, convert to ISO; else use current time
+        let isoDatetime = new Date().toISOString()
+        if (datetimeLocal) {
+            const parsed = new Date(datetimeLocal)
+            if (!isNaN(parsed)) {
+                isoDatetime = parsed.toISOString()
+            }
+        }
+
         const newEvent = {
             name: name,
             description: description,
             location: location,
-            dateTime: new Date().toISOString(),
+            datetime: isoDatetime,
         }
         await updateEvent(newEvent)
         navigate("/dashboard");
@@ -79,7 +104,7 @@ function EditEvent() {
 
     return (
         <div className="container">
-            <h1>Edit Event</h1>
+            <h1>EventVista — Edit Event</h1>
             <button onClick={() => navigate(-1)} className="previous__page">Go back</button>
             <form onSubmit={handleSubmit} className="create__event">
                 <div className="">
@@ -93,6 +118,11 @@ function EditEvent() {
                 <div className="">
                     <label htmlFor="location">Location</label>
                     <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
+                </div>
+                <div className="">
+                    <label htmlFor="datetime">Date & time</label>
+                    <input type="datetime-local" id="datetime" value={datetimeLocal} onChange={(e) => setDatetimeLocal(e.target.value)} />
+                    <small className="muted">Set the event date/time here</small>
                 </div>
                 <input type='submit' value="Update Event" />
 

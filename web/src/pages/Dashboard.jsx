@@ -79,7 +79,7 @@ function Dashboard() {
 
   return (
     <div className="container">
-      <h1>  Events created by {userEmail}</h1>
+      <h1>EventVista — Events created by {userEmail}</h1>
       {events?.length > 0 ? (
         <div className="dashboard__events">
           {events.map((event) => (

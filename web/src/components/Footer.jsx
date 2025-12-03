@@ -1,10 +1,10 @@
 
 function Footer() {
   return (
-    <div className="container footer">
-         &copy; {new Date().getFullYear()} Event Management App. All rights
-         reserved.
-    </div>
+        <div className="container footer">
+          &copy; {new Date().getFullYear()} EventVista. All rights
+          reserved.
+        </div>
   )
 }
 
